@@ -3,7 +3,7 @@ import React, {useState} from "react"
 
 type AccordionTitlePropsType = {
     title: string
-    changeCollapsed: () => void
+    onClick: () => void
 }
 
 function UncontrolledAccordion() {
@@ -15,13 +15,13 @@ function UncontrolledAccordion() {
     }
 
     return <div>
-        <AccordionTitle title={"NoName"} changeCollapsed={changeCollapsed}/>
+        <AccordionTitle title={"NoName"} onClick={changeCollapsed}/>
         {!collapsed && <AccordionBody/>}
     </div>
 }
 
 function AccordionTitle(props: AccordionTitlePropsType) {
-    const onClickHandler = () => props.changeCollapsed()
+    const onClickHandler = () => props.onClick()
     return <h3 onClick={onClickHandler}>{props.title}</h3>
 }
 
