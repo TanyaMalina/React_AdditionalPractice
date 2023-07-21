@@ -12,6 +12,7 @@ export default meta;
 type Story = StoryObj<typeof Accordion>;
 
 const callback = action("accordion mode change even fired")
+
 export const CollapsedMode: Story = {
     render: () => <Accordion titleValue={"Menu"} collapsed={true} onClick={callback}/>
 };
@@ -19,7 +20,6 @@ export const CollapsedMode: Story = {
 export const UncollapsedMode: Story = {
     render: () => <Accordion titleValue={"Menu"} collapsed={false} onClick={callback}/>
 };
-
 
 const ModeChangingWrap = () => {
     let [value, setValue] = useState<boolean>(true)

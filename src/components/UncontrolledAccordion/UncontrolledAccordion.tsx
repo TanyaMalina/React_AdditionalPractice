@@ -6,7 +6,7 @@ type AccordionTitlePropsType = {
     onClick: () => void
 }
 
-function UncontrolledAccordion() {
+export function UncontrolledAccordion() {
 
     let [collapsed, setCollapsed] = useState(true)
 
@@ -15,7 +15,7 @@ function UncontrolledAccordion() {
     }
 
     return <div>
-        <AccordionTitle title={"NoName"} onClick={changeCollapsed}/>
+        <AccordionTitle title={"Menu"} onClick={changeCollapsed}/>
         {!collapsed && <AccordionBody/>}
     </div>
 }
@@ -32,5 +32,3 @@ function AccordionBody() {
         <li>3</li>
     </ul>
 }
-
-export default UncontrolledAccordion
