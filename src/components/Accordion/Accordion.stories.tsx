@@ -12,20 +12,26 @@ export default meta;
 type Story = StoryObj<typeof Accordion>;
 
 const callback = action("accordion mode change even fired")
+const onClickCallback = action("some item was clicked")
 
 export const CollapsedMode: Story = {
-    render: () => <Accordion titleValue={"Menu"} collapsed={true} onClick={callback}/>
+    render: () => <Accordion titleValue={"Menu"} collapsed={true} onChange={callback} items={[]}
+                             onClick={onClickCallback}/>
 };
 
 export const UncollapsedMode: Story = {
-    render: () => <Accordion titleValue={"Menu"} collapsed={false} onClick={callback}/>
+    render: () => <Accordion titleValue={"Menu"} collapsed={false} onChange={callback}
+                             items={[{title: 'Anna', value: 1}, {title: 'Bob', value: 2}, {title: 'Stiv', value: 3}]}
+                             onClick={onClickCallback}/>
 };
 
 const ModeChangingWrap = () => {
     let [value, setValue] = useState<boolean>(true)
 
     return (
-        <Accordion titleValue={"Menu"} collapsed={value} onClick={()=>setValue(!value)}/>
+        <Accordion titleValue={"Menu"} collapsed={value} onChange={() => setValue(!value)}
+                   items={[{title: 'Anna', value: 1}, {title: 'Bob', value: 2}, {title: 'Stiv', value: 3}]}
+                   onClick={onClickCallback}/>
     )
 }
 
