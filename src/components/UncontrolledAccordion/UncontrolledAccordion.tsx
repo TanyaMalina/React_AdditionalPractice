@@ -1,4 +1,5 @@
-import React, {useState} from "react"
+import React, {useReducer} from "react"
+import {reducer, TOGGLE_COLLAPSED} from "./reducer";
 
 
 type AccordionTitlePropsType = {
@@ -6,17 +7,21 @@ type AccordionTitlePropsType = {
     onClick: () => void
 }
 
+
+
 export function UncontrolledAccordion() {
 
-    let [collapsed, setCollapsed] = useState(true)
+    //let [collapsed, setCollapsed] = useState(true
+    let [state, dispatch] = useReducer(reducer,  {collapsed: false})
 
     const changeCollapsed = () => {
-        setCollapsed(!collapsed)
+        //setCollapsed(!collapsed)
+        dispatch({type: TOGGLE_COLLAPSED})
     }
 
     return <div>
         <AccordionTitle title={"Menu"} onClick={changeCollapsed}/>
-        {!collapsed && <AccordionBody/>}
+        {!state.collapsed && <AccordionBody/>}
     </div>
 }
 
