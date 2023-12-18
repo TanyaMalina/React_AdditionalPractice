@@ -66,3 +66,23 @@ export const SetTimeoutExample = () => {
         {counter}
     </>
 }
+
+export const ClockExample = () => {
+    const [date, setDate] = useState(new Date)
+
+    // const hours = date.getHours()
+    // const minutes = date.getMinutes()
+    // const seconds = date.getSeconds()
+
+    useEffect(() => {
+
+        setInterval(() => {
+            setDate(new Date())
+        }, 1000)
+
+    }, [])
+
+    return <>
+        {date.getHours()}:{date.getMinutes()}:{date.getSeconds()}
+    </>
+}
