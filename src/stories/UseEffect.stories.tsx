@@ -67,22 +67,63 @@ export const SetTimeoutExample = () => {
     </>
 }
 
-export const ClockExample = () => {
-    const [date, setDate] = useState(new Date)
+export const ResetEffectExample = () => {
+    const [counter, setCounter] = useState(1)
 
-    // const hours = date.getHours()
-    // const minutes = date.getMinutes()
-    // const seconds = date.getSeconds()
+
+    console.log('Component render with ' + counter)
 
     useEffect(() => {
+        console.log('Effect occurred: ' + counter)
 
-        setInterval(() => {
-            setDate(new Date())
-        }, 1000)
+        return () => {
+            console.log("RESET EFFECT " + counter)
+        }
+    }, [counter])
 
-    }, [])
 
     return <>
-        {date.getHours()}:{date.getMinutes()}:{date.getSeconds()}
+        counter: {counter}
+        <button onClick={() => setCounter(counter + 1)}>+</button>
     </>
 }
+
+
+export const KeyTrackerExample = () => {
+    const [text, setText] = useState('')
+
+
+    console.log('Component render with ' + text)
+
+    // useEffect(() => {
+    //     const handler = (e: KeyboardEvent) => {
+    //         console.log(e.key)
+    //         setText((state) => state + e.key)
+    //     }
+    //
+    //     window.addEventListener('keypress', handler)
+    //
+    //     return () => {
+    //         window.removeEventListener('keypress', handler)
+    //     }
+    // }, [])
+
+    useEffect(() => {
+        const handler = (e: KeyboardEvent) => {
+            console.log(e.key)
+            setText(text + e.key)
+        }
+
+        window.addEventListener('keypress', handler)
+
+        return () => {
+            window.removeEventListener('keypress', handler)
+        }
+    }, [text])
+
+    return <>
+        Typed text: {text}
+    </>
+}
+
+
